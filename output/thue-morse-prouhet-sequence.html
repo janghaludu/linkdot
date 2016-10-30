@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cyrille Rossant, ">
+    <link href="/favicon.png" rel="icon">
+
+        <link rel="alternate"  href="http://cyrille.rossant.net/feeds/all.atom.xml" type="application/atom+xml" title="Cyrille Rossant Full Atom Feed"/>
+        <link rel="alternate" href="http://cyrille.rossant.net/feeds/atom.xml" type="application/atom+xml" title="Cyrille Rossant Atom Feed"/>
+
+        <title>Sriharsha Bangaru</title>
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="/theme/css/grids-responsive-min.css">
+    <!--<![endif]-->
+    <link rel="stylesheet" href="/theme/css/styles.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,500" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <header id="header" class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4">
+            <div id="menu">
+                <div class="pure-menu pure-menu-open pure-menu-horizontal">
+                    <ul>
+                        <li><a href="/index.html">Blog</a></li>
+                        <li><a href="/archives.html">Archive</a></li>
+                        <li><a href="/tags.html">Tags</a></li>
+                        <li><a href="/pages/projects.html">Projects</a></li>
+                        <li><a href="/pages/talks.html">Talks</a></li>
+                        <li><a href="/pages/about-me.html">About</a></li>
+    
+                    </ul>               
+                </div>
+            </div>
+        </div>
+
+        <div class="pure-u-1 pure-u-md-1-4">
+            <div id="social">
+                <div class="pure-menu pure-menu-open pure-menu-horizontal">
+                    <ul>
+                        <li><a href="https://www.last.fm/shreeha"><i class="fa fa-lastfm"></i></a></li>
+                        <li><a href="https://twitter.com/pfatagaga"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://github.com/janghaludu"><i class="fa fa-github"></i></a></li>
+                        <li><a href="https://www.instagram.com/pfatagaga"><i class="fa fa-instagram"></i></a></li>
+                    </ul>                
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="layout" class="pure-g">
+        <section id="content" class="pure-u-1 pure-u-md-3-4">
+            <div class="l-box">
+                <section id="posts">
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Thue - Morse - Prouhet  Sequence</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://linkdot.link/tag/mathematics.html">Mathematics</a>
+                                <a class="post-category" href="http://linkdot.link/tag/python.html">Python</a>
+                                <a class="post-category" href="http://linkdot.link/tag/recursion.html">Recursion</a>
+                                <a class="post-category" href="http://linkdot.link/tag/ocd.html">OCD</a>
+                        </p>
+                </header>
+            </section>
+            <p>I have a confession of sorts to make. As a little kid, when I wasn't chasing dragonflies or playing carroms or  scribbling my name everywhere, I used to be engrossed in this rather weird game.</p>
+<h3>Story Time</h3>
+<p>I would start by doing something trivial using one of my hands, say my left hand. It could be flicking, tapping, touching something, whatever, something very trivial. I would call this <strong>a</strong>. 
+I would then do something similar with my right hand and call it <strong>b</strong>. </p>
+<p><em>So as to compensate the imbalance caused in the universe due to that ghastly act <strong>a</strong>. There now, the world is at peace with itself. Is it though?</em> </p>
+<h2>a b</h2>
+<p><em>Balanced but not fair. Discernible folks would've realized by now that it isn't fair on <strong>b</strong> though right? I mean shouldn't it get a chance to lead the sequence too?</em></p>
+<p>I would therefore, repeat <strong>b</strong> and then <strong>a</strong>. We have thus arrived at  </p>
+<h2>a b b a</h2>
+<p><em>Justice seems to have prevailed and balance in the universe is as good as ever. Maybe not, after all. I mean <strong>b</strong> is kinda relieved with the court order but it still sees some injustice that has escaped the jury's attention. 'Justice of first order schmirst order.' <strong>b</strong> sneers at you, seething with discontent. Onlookers whisper among themselves 'Utter drivel. Token justice. Pandering to the powerful. Isn't <strong>b</strong> worthy enough to lead a sequence of length four?'</em></p>
+<p>I would therefore proceed ahead with <strong>baab</strong> , <strong>baab</strong> and <strong>abba</strong> and thus complete  </p>
+<h2>abba baab baab abba</h2>
+<p>Normally this is where it ended. <em>gasp</em>
+<em>Slow Clap time. <strong>b</strong> is happy now guys. We did it. Look at the smile plastered on it's face. Some of you champions of the oppressed might say  <strong>b</strong> isn't exactly beaming with joy but let's not get greedy and talk about justice of third order. [ <strong>abbabaabbaababba baababbaabbabaab baababbaabbabaab abbabaabbaababba</strong> ]  That would be unfair on <strong>me</strong>, the attorney who took this up pro bono.</em></p>
+<p>The nomenclature part came later of course. When it started, it was all about <em>balancing it out and being <strong>fair<strong><em>. By fair I mean, why does </em>*a</strong> have to be chosen first before </strong>b<strong> ? So </strong>ba<strong> gets appended to </strong>ab</em>* and so on.</p>
+<p>I can assure you it didn't look as bad as it sounds. I had perfected this game to an extant that If you had ever seen me doing it, you'd have assumed that I was just tapping my fingers to some rhythm and never would've guessed that I was going OCD there. ( <em>unless of course one of a or b was 'picking my nose' or 'licking my lips'</em> )</p>
+<h1>OCDCDODOC</h1>
+<p>Anyway, this wasn't something that consumed me or interfered with my everyday life, like how it plays out for people with debilitating OCD. And over the course of time, it skipped my mind completely as I developed new avocations like</p>
+<ul>
+<li>Summing the digits on number plates to test divisibility by 9</li>
+<li>Rearranging sentences based on syllable and character counts.</li>
+<li>Replacing soft consonants ( <em>Saralas</em> ) with hard consonants (<strong>Parushas</strong>) and vice versa. <strong>Kattappa</strong> --- <em>Gaddabba</em></li>
+<li>Piecewise semantic conjugation of phrases and sentences. <strong>He is interesting</strong> --- <em>She was boring</em></li>
+<li><em>Forcefully</em> fitting a phrase/word into 5 syllables so that I can count it off my fingers. <strong>He yers my Hoo li badge</strong> -- <em>Heers my Hoo li badge</em></li>
+</ul>
+<p>I remembered the <strong>abba</strong> game again during my brief stint at Chennai Mathematical Institute and explored the possibility of the set of these sequences being a group under piece wise addition. Googling <strong>abbabaabbaababba</strong> to find if someone has worked on this before led me to  <a href="https://en.wikipedia.org/wiki/Thue%E2%80%93Morse_sequence">this sequence</a>, something that was discovered over one fifty years back and the astounding fact that this sequence has a history of being discovered over and over again by many people, including a chess grandmaster!</p>
+<blockquote>
+<p><em>The Thue–Morse sequence was first studied by Eugène Prouhet in 1851, who applied it to number theory. However, Prouhet did not mention the sequence explicitly; this was left to Axel Thue in 1906, who used it to found the study of combinatorics on words. The sequence was only brought to worldwide attention with the work of Marston Morse in 1921, when he applied it to differential geometry. The sequence has been discovered independently many times, not always by professional research mathematicians; for example, Max Euwe, a chess grandmaster, who held the world championship title from 1935 to 1937, and mathematics teacher, discovered it in 1929 in an application to chess: by using its cube-free property (see above), he showed how to circumvent a rule aimed at preventing infinitely protracted games by declaring repetition of moves a draw.</em></p>
+</blockquote>
+<p>I know! It made me feel kinda special. It felt as if the forces of evolution chose me to ~~kill John Lennon~~ unravel deep structures in the universe or something to that effect. Thanks to the internet however, I understood there are a good number of people who seem to have experienced this sequence playing in their heads during their childhoods. It's almost as if some people are hardwired to discover this pattern. I'm tempted to attribute it to some kind of OCD gene/mutation whatever but my lack of expertise on that subject prevents me from doing so. Whatever be the case, it is incredibly fascinating to see it manifest like this.</p>
+<h1>Equitable Distributions</h1>
+<p>This sequence, called Thue - Morse sequence or should I say Thue - Morse Morse - Thue sequence has many interesting properties. </p>
+<p>It can be used as a quick and dirty, not necessarily optimal, algorithm to divide resources <strong>equitably</strong> among two people. Consider the case of two captains having to pick players for their respective teams from a pool of players. The teams need to be as evenly balanced as possible in terms of the cumulative strengths of the players. Both the captains have an idea of how good each player from the lot is.  </p>
+<p>The classical way of each captain choosing alternately, doesn't exactly bode well for the captain who gets to choose second. As you can see, the captain who gets to choose first will end up with the <span class="math">\({1}^{st}, {3}^{rd},{5}^{th}, {7}^{th}....\)</span> best players of the lot whereas the other captain has to <em>settle</em> with the <span class="math">\({2}^{nd}, {4}^{th},{6}^{th}, {8}^{th}....\)</span> best of the lot. If the captains agree to choose the players in Thue Morse pattern, in other words, if they take turns in taking turns in taking turns and so on, the distribution will be fairer. In this case the first captain gets the <span class="math">\({1}^{st}, {4}^{th},{6}^{th}, {7}^{th},{10}^{th},....\)</span> best of the lot and the second one gets the <span class="math">\({2}^{nd}, {3}^{rd},{5}^{th}, {8}^{th},{9}^{th},....\)</span> best of the lot.</p>
+<p>Obviously, this doesn't work well if there are extreme outliers in the player pool. Elementary arithmetic shows that if the strengths of these players vary linearly, Thue - Morse distribution works to perfection. </p>
+<p>Say we have a lot of <span class="math">\(8\)</span> players, whose <em>strengths</em> decrease linearly from <span class="math">\(8\)</span> to <span class="math">\(1\)</span> when sorted in decreasing order. It can easily be seen that when the teams are split using Thue - Morse sequence, cumulative strengths of both the teams equal <span class="math">\(18\)</span></p>
+<p>Note that we kept it simple by ignoring the existence of say <em>bonding coefficients</em> between players, you know the kind of thing that makes the <em>sum of parts lesser/greater than the collective whole</em>. We would then be looking at the problem of equi-partitioning a set into two groups with minimal difference between their quantified collective capabilities that are expressed as functions of <em>bonding coefficients</em>.</p>
+<p>Other example I could think of</p>
+<ul>
+<li>Two parties taking turns for a titular post, if the magnitude of benefits that can be reaped using power decreases with the passage of time or benefits beget more benefits ( <em>interest on money for example</em> )  </li>
+</ul>
+<h2>Koch Curve</h2>
+<p>The Thue - Morse sequence is also connected to the ubiquitous Koch curve ( snowflake curve ). <em>The fun never ends I tell you.</em> You can generate it using the following simple algorithm. </p>
+<p>For every element in the Thue - Morse sequence, if the element is <span class="math">\(a\)</span>, move forward by one unit and turn anticlockwise by <span class="math">\(60^{\circ}\)</span> if the element is <span class="math">\(b\)</span>. As simple as that.</p>
+<h2>Generating Thue - Morse Sequences</h2>
+<p>Time for formalization.</p>
+<p>There are many ways of generating the Thue - Morse sequence.</p>
+<h3>Mirror method</h3>
+<p>Let's start with the way it played in my head. </p>
+<p>Let <span class="math">\(f(a,b,n)\)</span> represent the sequence in my head of <span class="math">\({n}^{th}\)</span> order. I generated it using the equation <span class="math">\(f(a,b,n) = f(a,b,n-1) + f(b,a,n-1) + f(b,a,n-1) +  f(a,b,n-1)\)</span></p>
+<p>where + represents concatenation and <span class="math">\(f(a,b,1) = abba\)</span></p>
+<p>The Thue - Morse sequence, on the other hand, starts with <span class="math">\(a, ab\)</span> and consists of <span class="math">\(abbabaab\)</span> between <span class="math">\(abba\)</span> and <span class="math">\(abbabaabbaababba\)</span>. My sequence turns out to be a sub sequence of Thue - Morse sequence. To be more specific, it comprises all the odd terms starting from <span class="math">\(abba\)</span>.</p>
+<p>The right recursive relation that describes Thue - Morse sequence of <span class="math">\({n}^{th}\)</span> order is thus <span class="math">\(f(a,b,n) = f(a,b,n-1) + f(b,a,n-1)\)</span></p>
+<p><img alt="" src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Morse-Thue_sequence.gif" /></p>
+<p>It can be generated as follows in Python.</p>
+<div class="highlight"><pre><span></span>def f(a,b,n):
+if n == 0:
+    return a
+else:
+    return f(a,b,n-1) + f(b,a,n-1) if n &gt; 1 else a + b
+</pre></div>
+
+
+<p>Please note that, in literature, there is no such thing as a Thue - Morse sequence of <span class="math">\({n}^{th}\)</span> order. There is only one Thue - Morse sequence and is equal to <span class="math">\(\lim_{n\rightarrow \infty  }f(a,b,n)\)</span></p>
+<h3>Sum of binary digits</h3>
+<p>Let <span class="math">\(s(n)\)</span> denote the sum of digits of binary representation of <span class="math">\(n\)</span></p>
+<p><span class="math">\(t_n\)</span>, the <span class="math">\({n}^{th}\)</span> term of <span class="math">\(\lim_{n\rightarrow \infty  }f(0,1,n)\)</span> is then equal to <span class="math">\(s(n)\hspace{1 mm} mod\hspace{1 mm} 2\)</span></p>
+<h5>Proof by induction</h5>
+<p><span class="math">\(f(0,1,0)\hspace{1 mm}=s(0)\hspace{1 mm} mod\hspace{1 mm} 2\hspace{1 mm}=0\)</span></p>
+<p>So the statement is true for <span class="math">\(n\hspace{1 mm}=\hspace{1 mm}0\)</span> </p>
+<p>Let's assume it is true for all <span class="math">\(m\hspace{1 mm}&lt;\hspace{1 mm}n\)</span></p>
+<p>Let <span class="math">\(2^k \hspace{1 mm}\leq n\hspace{1 mm}&lt;\hspace{1 mm}  2^{k+1}\)</span></p>
+<p><span class="math">\(\rightarrow \hspace{5 mm}t_n\)</span> is the <span class="math">\(n^{th}\)</span> term of <span class="math">\(f(a,b,k+1)\)</span></p>
+<p><span class="math">\(\rightarrow \hspace{5 mm}t_n\)</span> is the <span class="math">\(n^{th}\)</span> term of <span class="math">\(f(a,b,k)\hspace{1 mm}+\hspace{1 mm}f(b,a,k)\)</span></p>
+<p><span class="math">\(\rightarrow \hspace{5 mm}t_n\)</span> is the <span class="math">\({(n-2^{k})}^{th}\)</span> term of <span class="math">\(f(b,a,k)\)</span></p>
+<p>Since <span class="math">\(f(b,a,k)\)</span> is the mirror image of <span class="math">\(f(a,b,k)\)</span>, we can conclude</p>
+<p><span class="math">\(t_n \hspace{1 mm}=\hspace{1 mm}(t_{n-2^{k}} + 1)\hspace{1 mm}mod\hspace{1 mm}2\)</span></p>
+<p>By induction we have <span class="math">\(t_{n-2^{k}}\hspace{1 mm}=\hspace{1 mm}s(n-2^{k})\hspace{1 mm}mod\hspace{1 mm}2\)</span></p>
+<p>Also, since <span class="math">\(2^k \hspace{1 mm}\leq n\hspace{1 mm}&lt;\hspace{1 mm}  2^{k+1}\)</span>, we have <span class="math">\(s(n)\hspace{1 mm}=\hspace{1 mm}s(n-2^{k})\hspace{1 mm}+\hspace{1 mm}1\)</span></p>
+<p>If the last step isn't obvious, see how it is true for numbers represented in decimal system.</p>
+<p><span class="math">\(\rightarrow \hspace{5 mm}t_n\hspace{1 mm}=\hspace{1 mm}((s(n)-1)\hspace{1 mm}mod\hspace{1 mm}2\hspace{1 mm}+\hspace{1 mm}1)\hspace{1 mm}mod\hspace{1 mm}2\)</span></p>
+<p><span class="math">\(\rightarrow \hspace{5 mm}t_n\hspace{1 mm}=\hspace{1 mm}s(n)\hspace{1 mm}mod\hspace{1 mm}2\)</span></p>
+<p>The following Python function returns the first <span class="math">\(n\)</span> characters of the Thue - Morse sequence using the above method. This is a better function for generating the sequence since it doesn't compute <span class="math">\(f(a,b,0), f(a,b,1), f(a,b,2),..., f(a,b,n-1)\)</span> for generating <span class="math">\(f(a,b,n)\)</span></p>
+<div class="highlight"><pre><span></span>def f(a,b,n):
+    p = &#39;&#39;.join([str(sum_of_digits(number) % 2) for number in range(n)])
+    return p.replace(&#39;0&#39;,a).replace(&#39;1&#39;,b)
+
+def sum_of_digits(number):
+    return sum([int(numeral) for numeral in str(bin(number))[2:] ])
+</pre></div>
+
+
+<h3>Morphism method</h3>
+<p>Simply put, a morphism is a <em>structure preserving</em> function on a mathematical object under some particular operation.</p>
+<p>In our case, the operation is concatenation denoted by <span class="math">\(+\)</span>. So if <span class="math">\(m(x)\)</span> is such a structure preserving function under concatenation over <em>strings</em>, we have <span class="math">\(m(x+y)\hspace{1 mm}=\hspace{1 mm}m(x)\hspace{1 mm}+\hspace{1 mm}m(y)\hspace{1 mm}=\hspace{1 mm}m(x)m(y)\)</span></p>
+<p>Define a Thue - Morse morphism <span class="math">\(m\)</span> such that <span class="math">\(m(a) = a+b=ab, m(b) = b+a=ba\)</span></p>
+<p><span class="math">\(\rightarrow \hspace{5 mm} m^{2}(a) = m(m(a)) = m(ab) = m(a) + m(b) = ab + ba = abba\)</span> </p>
+<p><span class="math">\(m^{3}(a) = m(m(m(a))) = m(m(ab)) = m(abba) = m(a) + m(b) + m(b) + m(a) = abbabaab\)</span> </p>
+<p>and so on. You can see that it is the same as <span class="math">\(f(a,b,3)\)</span> defined earlier. </p>
+<p>Similarly, it can be seen that <span class="math">\((m^{2}(b)\)</span> and <span class="math">\(m^{3}(b)\)</span> are equal to <span class="math">\(f(a,b,2)\)</span> and <span class="math">\(f(a,b,3)\)</span> respectively.</p>
+<p>We can prove that is indeed the case till death does them apart using induction.</p>
+<p>We've just proved that the statement is true for <span class="math">\(n=1, 2,3\)</span></p>
+<p>Assume it is true for <span class="math">\(n\)</span>.</p>
+<p><span class="math">\(m^{n+1}(a)\hspace{1 mm}=\hspace{1 mm}m^{n}(m(a))\)</span>
+<span class="math">\(=\hspace{1 mm}m^{n}(ab)\)</span>
+<span class="math">\(=\hspace{1 mm}m^{n}(a)+m^{n}(b)\)</span>
+<span class="math">\(=\hspace{1 mm}f(a,b,n)+f(b,a,n)\)</span>
+<span class="math">\(=\hspace{1 mm}f(a,b,n+1)\)</span></p>
+<p>Similarly, it can be proved that <span class="math">\(m^{n+1}(b) = f(b,a,n+1)\)</span></p>
+<p>Below is the Python code for generating Thue - Morse sequence using this method.</p>
+<div class="highlight"><pre><span></span>def m(x, a, b):
+    if len(x) == 1:
+        if x == a:
+            return str(a) + str(b)
+        if x == b:
+            return str(b) + str(a)    
+    if len(x) &gt; 1:
+        return &#39;&#39;.join([m(element, a, b) for element in x])
+
+def m_n(x,a,b,n):
+    m_n = a
+    for element in range(n):
+        m_n = m(m_n,a,b)
+    return m_n
+</pre></div>
+
+
+<h3>Recursion</h3>
+<p>The Thue - Morse sequence can also be generated using the following recurrence relation.</p>
+<p><span class="math">\(t_0\hspace{1 mm}=\hspace{1 mm}0\)</span></p>
+<p><span class="math">\(t_{2n}\hspace{1 mm}=\hspace{1 mm}t_n\)</span></p>
+<p><span class="math">\(t_{2n+1}\hspace{1 mm}=\hspace{1 mm}1-t_{2n}\)</span></p>
+<p>Using the recursive relations mentioned above, we can generate the sequence in Python as follows</p>
+<div class="highlight"><pre><span></span>def tn(n):
+    if n == 0:
+        return 0
+    return tn(n/2) if n % 2 == 0 else 1 - tn(n-1)
+
+def f(a,b,n):
+    return &#39;&#39;.join([str(element).replace(&#39;0&#39;,a).replace(&#39;1&#39;,b) 
+               for element in [tn(index) for index in range(n)]])
+</pre></div>
+
+
+<p><br></p>
+<h3>Infinite Product</h3>
+<p>The <span class="math">\(n^{th}\)</span> term of Thue - Morse sequence can also be determined by calculating the sign of coefficient of <span class="math">\(x^n\)</span> in the following infinite product.</p>
+<p><img alt="" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/83fadc308d6ac46835ff185a901075f65cb8a8be" /></p>
+<h3>Miscellaneous</h3>
+<p>Found these formulations on a <a href="https://www.facebook.com/groups/afunctions/">Facebook group</a> dedicated to Atomic functions, Self-differential equations and Morse -Thue sequences.</p>
+<p><em>Apparently</em>, the first formulation involving Hyper Geometric functions simplifies to the second. </p>
+<p><img src="../images/thum2.jpg" alt="Hyper Geometric" style="width: 600px;"/> 
+<img src="../images/thum.jpg" alt="Thue Morse Function" style="width: 600px;"/></p>
+<p><br></p>
+<h2>N - variable Thue - Morse sequence</h2>
+<p>How about a generalized Thue - Morse sequence comprising <span class="math">\(n\)</span> variables? I haven't found any literature on the internet concerning this but I suppose a man can dream!</p>
+<p>Let's try it out for <span class="math">\(3\)</span> variables - <span class="math">\(a,b,c\)</span>.</p>
+<p>My intuition tells me cyclical permutations might just do the trick. Let's explore that.</p>
+<h6>abc</h6>
+<h6>abc-bca-cab</h6>
+<h6>abc-bca-cab bca-cab-abc cab-abc-bca</h6>
+<p>How do I know if this is <em>structurally similar</em> to the two variable Thue - Morse sequence apart from the fact that my gut feeling says so?</p>
+<p>My sophomoric knowledge of mathematics not withstanding, I can't think of a way to tackle this problem properly. A simple hack however, might just do the job ( <em>sort of</em>  ). Remember the fair distribution property of Thue - Morse sequence and how it worked like a charm when the players' competency function was linear? Let's consider the case of picking three <em>balanced</em> teams out of <span class="math">\(9\)</span> players whose strengths vary from <span class="math">\(9\)</span> to <span class="math">\(1\)</span> linearly and see how this sequence fares.</p>
+<p>Team 1 comprises <span class="math">\(1^{st}, 6^{th}, 8^{th}\)</span> best players, Team 2 comprises <span class="math">\(2^{nd}, 4^{th}, 9^{th}\)</span> best players and Team 3 comprises <span class="math">\(3^{rd}, 5^{th}, 7^{th}\)</span> best players. So the respective strengths of the three teams are <span class="math">\(9+4+2\)</span>, <span class="math">\(8+6+1\)</span> and <span class="math">\(7+5+3\)</span></p>
+<p>Voila! There you have it. I can now speak with <em>some</em> confidence that this is indeed a Thue - Morse <em>like</em> sequence of three variables and postulate a general formula for n - variables with I suppose a little less confidence.</p>
+<p>Extending the logic, morphism in this case would be <span class="math">\(m(a)\hspace{1 mm}=\hspace{1 mm}abc, m(b)\hspace{1 mm}=\hspace{1 mm}bca, m(c)\hspace{1 mm}=\hspace{1 mm}cab\)</span></p>
+<p>A Thue - Morse <em>like</em> morphism of <span class="math">\(n\)</span> variables will thus be  <span class="math">\(m(a_1)\hspace{1 mm}=\hspace{1 mm}a_1a_2a_3....a_n, m(a_2)\hspace{1 mm}=\hspace{1 mm}a_2a_3....a_na_1,....., m(a_n)\hspace{1 mm}=\hspace{1 mm}a_na_1....a_{n-1}\)</span></p>
+<h5>Update</h5>
+<p>It appears that an even more generalized form of Thue - Morse sequence can be generated using a generalized version of the <em>Binary digits' sum</em> method.</p>
+<p>The <span class="math">\(n^{th}\)</span> term of the generalized Thue - Morse sequence <span class="math">\({t_{p,q}}^n\)</span> can be arrived at as follows</p>
+<p><span class="math">\({t_{p,q}}^n\hspace{1 mm}=\hspace{1 mm}s_{p}(n)\hspace{1 mm}mod\hspace{1 mm}q\)</span> for <span class="math">\(p ≥ 2\)</span> and <span class="math">\(q ≥ 1\)</span>, where <span class="math">\(s_p(n)\)</span> is the sum of of digits of <span class="math">\(n\)</span> represented in base <span class="math">\(p\)</span></p>
+<h2>References</h2>
+<p><a href="https://cs.uwaterloo.ca/~shallit/Papers/ubiq15.pdf">The ubiquitous Prouhet Thue Morse sequence</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Thue%E2%80%93Morse_sequence">Wikipedia</a></p>
+<p><a href="http://mathworld.wolfram.com/Thue-MorseSequence.html">Wolfram Mathworld</a></p>
+<p><a href="https://www.math.washington.edu/~morrow/336_12/papers/christopher.pdf">An overview of the Thue Morse sequence</a></p>
+<p><a href="https://cs.uwaterloo.ca/~shallit/Talks/green3.pdf">The ubiquitous Thue Morse sequence - Talk by Jeffrey Shallit</a></p>
+<p><a href="http://personal.kenyon.edu/holdenerj/StudentResearch/WhenThueMorsemeetsKochJan222005.pdf">When Thue Morse meets Koch</a></p>
+<p><a href="https://www.facebook.com/groups/afunctions/">Atomic functions, Self-differential equations and Morse -Thue sequences</a></p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/prh72BLNjIk" frameborder="0" allowfullscreen></iframe>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' }, Macros: {} }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'brown ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "linkdot"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+        </div>
+    </div>
+                </section>
+            </div>
+        </section>
+                <nav id="sidebar" class="pure-u-1 pure-u-md-1-4">
+            <div class="l-box">
+                <section>
+                    <div class="portrait">
+                        <img src="../images/dp2.jpg" />
+                    </div>
+                    <div class="name-cv">
+                        <div class="name">Sriharsha Bangaru</div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="sub-name">Combinatorics | Machine Learning | Statistical Inference</div>
+                    <div class="contact"><i>sXhXrXeXeXhXa</i>@gmail.com</div>
+                    <div class="location">New Delhi, India</div>
+                </section>
+
+                <section class="tags">
+                    <span class="tag"><a href="/tag/neuroscience/">#combinatorics</a></span>
+                    <span class="tag"><a href="/tag/python/">#python</a></span>
+                    <span class="tag"><a href="/tag/dataviz/">#postpunk</a></span>
+                    <span class="tag"><a href="/tag/maths/">#maths</a></span>
+                    <span class="tag"><a href="/tag/gpu/">#dada</a></span>
+                    <span class="tag"><a href="/tag/opendata/">#data</a></span>
+                </section>
+
+
+                <section class="books">
+                    <header><h3>Tags</h3></header>
+                          <li><a href="http://linkdot.link/tag/anil-battula.html">Anil Battula</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/art.html">Art</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/artrage.html">Artrage</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/books.html">Books</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/chain-and-the-gang.html">Chain and the Gang</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/chandigarh.html">Chandigarh</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/collage.html">Collage</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/distance-measure.html">Distance Measure</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/dot-product.html">Dot Product</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/dub-sharma.html">Dub Sharma</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/five-thirty-eight.html">Five Thirty Eight</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/gang-of-four.html">Gang of Four</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/gof.html">GOF</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/ian-svenonious.html">Ian Svenonious</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/indie.html">Indie</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/ipython.html">Ipython</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/jnu.html">JNU</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/lastfm.html">last.fm</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/markov-chains.html">Markov Chains</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/markovify.html">Markovify</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/martin-atkins.html">Martin Atkins</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/mathematics.html">Mathematics</a> (4) </li>
+                          <li><a href="http://linkdot.link/tag/mathjax.html">Mathjax</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/mir.html">Mir</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/mixed-media.html">Mixed Media</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/movies.html">Movies</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/multivariable-function.html">Multivariable function</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/music.html">Music</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/music-production.html">Music Production</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/ocd.html">OCD</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/optimization.html">Optimization</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/pil.html">PIL</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/poetry.html">Poetry</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/probability.html">Probability</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/programming.html">Programming</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/progress.html">Progress</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/public-image-limited.html">Public Image Limited</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/python.html">Python</a> (4) </li>
+                          <li><a href="http://linkdot.link/tag/raduga.html">Raduga</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/recommendations.html">Recommendations</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/recursion.html">Recursion</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/short-film.html">Short Film</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/similarity.html">Similarity</a> (3) </li>
+                          <li><a href="http://linkdot.link/tag/simulation.html">Simulation</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/sympy.html">Sympy</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/telugu.html">Telugu</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/testing.html">testing</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/ussr.html">USSR</a> (1) </li>
+                          <li><a href="http://linkdot.link/tag/vowels-consonants.html">Vowels & Consonants</a> (1) </li>
+                </section>
+            </div>
+        </nav>
+
+        <footer id="footer" class="pure-u-1 pure-u-md-3-4">
+            <div class="l-box">
+                <div>
+                    <p>&copy; <a href="http://linkdot.link">Sriharsha Bangaru</a> &ndash;
+                        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+                        for <a href="http://blog.getpelican.com/">Pelican</a> by <a href = "http://cyrille.rossant.net/"> Cyrille Rossant</a>
+                    </p>
+                </div>
+            </div>
+        </footer>        
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+
+</body>
+</html>

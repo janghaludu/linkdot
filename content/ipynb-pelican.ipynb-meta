@@ -1,0 +1,5 @@
+Title: Testing Ipynb Plugin for Pelican etc etc
+Date: 2016-10-29 08:40
+Tags: Ipynb, Python
+Summary: Write the post using the Jupyter Notebook interface, using markdown, equations, etc.ipynb-meta. For example if you have my_post.ipynb create a my_post.ipynb-meta.
+
