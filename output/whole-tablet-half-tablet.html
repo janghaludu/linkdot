@@ -1,0 +1,1072 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://linkdot.link/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://linkdot.link/theme/pygments/monokai.min.css">
+  <link rel="stylesheet" type="text/css" href="http://linkdot.link/theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Sriharsha Bangaru" />
+<meta name="description" content="Five Thirty Eight - Riddler Express (August 25th)¶ You take half of a vitamin every morning. The vitamins are sold in a bottle of 100 (whole) tablets, so at first you have to cut the tablets in half. Every day you randomly pull one thing from the bottle — if it’s a whole tablet, you cut it in half and put the leftover half back in the bottle. If it’s a half-tablet, you take the vitamin. You just bought a fresh bottle. How many days, on average, will it be before you pull a half-tablet out of the bottle?" />
+<meta name="keywords" content="Probability, Ipython, Mathematics, Markov Chains, Five Thirty Eight, Riddlerr">
+<meta property="og:site_name" content="Dotlink"/>
+<meta property="og:title" content="Whole Tablet, Half Tablet"/>
+<meta property="og:description" content="Five Thirty Eight - Riddler Express (August 25th)¶ You take half of a vitamin every morning. The vitamins are sold in a bottle of 100 (whole) tablets, so at first you have to cut the tablets in half. Every day you randomly pull one thing from the bottle — if it’s a whole tablet, you cut it in half and put the leftover half back in the bottle. If it’s a half-tablet, you take the vitamin. You just bought a fresh bottle. How many days, on average, will it be before you pull a half-tablet out of the bottle?"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://linkdot.link/whole-tablet-half-tablet.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2017-08-31 12:31:00+05:30"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://linkdot.link/author/sriharsha-bangaru.html">
+<meta property="article:section" content="misc"/>
+<meta property="article:tag" content="Probability"/>
+<meta property="article:tag" content="Ipython"/>
+<meta property="article:tag" content="Mathematics"/>
+<meta property="article:tag" content="Markov Chains"/>
+<meta property="article:tag" content="Five Thirty Eight"/>
+<meta property="article:tag" content="Riddlerr"/>
+<meta property="og:image" content="">
+
+  <title>Dotlink &ndash; Whole Tablet, Half Tablet</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://linkdot.link">
+        <img src="http://linkdot.link/theme/img/ring.gif" alt="Sriharsha Bangaru" title="Sriharsha Bangaru">
+      </a>
+      <h1><a href="http://linkdot.link">Sriharsha Bangaru</a></h1>
+
+<p>Mathematics | Programming | Art</p>
+      <nav>
+        <ul class="list">
+
+          <li><a href="#" target="_blank">About</a></li>
+          <li><a href="#" target="_blank">Categories</a></li>
+          <li><a href="#" target="_blank">Primers</a></li>
+          <li><a href="#" target="_blank">Projects</a></li>
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-lastfm" href="https://github.com/djanghaludu" target="_blank"><i class="fa fa-lastfm"></i></a></li>
+        <li><a class="sc-github-alt" href="https://github.com/djanghaludu" target="_blank"><i class="fa fa-github-alt"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/pfatagaga" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-instagram" href="https://instagram.com/pfatagaga" target="_blank"><i class="fa fa-instagram"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+    <h1 id="whole-tablet-half-tablet">Whole Tablet, Half Tablet</h1>
+    <p>
+          Posted on Thu 31 August 2017 in <a href="http://linkdot.link/category/misc.html">misc</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Five-Thirty-Eight---Riddler-Express-(August-25th)">Five Thirty Eight - Riddler Express (August 25th)<a class="anchor-link" href="#Five-Thirty-Eight---Riddler-Express-(August-25th)">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>You take half of a vitamin every morning. The vitamins are sold in a bottle of 100 (whole) tablets, so at first you have to cut the tablets in half. Every day you randomly pull one thing from the bottle — if it’s a whole tablet, you cut it in half and put the leftover half back in the bottle. If it’s a half-tablet, you take the vitamin. You just bought a fresh bottle. How many days, on average, will it be before you pull a half-tablet out of the bottle?</p>
+<p>Extra credit: What if the halves are less likely to come up than the full tablets? They are smaller, after all.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The problem is screaming for Markov modelling but I felt it could be solved using basic probability concepts alone and went ahead with the following approach.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Algebraic-Solution">Algebraic Solution<a class="anchor-link" href="#Algebraic-Solution">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [56]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">z</span> 
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Product</span><span class="p">,</span> <span class="n">factorial</span><span class="p">,</span> <span class="n">Sum</span><span class="p">,</span> <span class="n">oo</span><span class="p">,</span> <span class="n">evalf</span><span class="p">,</span> <span class="n">factor</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="o">*</span>
+<span class="n">init_printing</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Average number of days before one pulls a half-tablet out is  $\sum_{k=2}^{101}\;k.P(\;First\;Ever\;🚦 🚥_{k^{th} day})$</p>
+<p><br /></p>
+<p>And $P(\;First\;Ever\;🚦 🚥_{i^{th} day})\;=\;P(\;💊\;_{1^{st} day})P(\;💊\;_{2^{nd} day})....P( \;💊\;_{i-1^{th} day})P(\;🚦 🚥_{i^{th} day})$</p>
+<p><br /></p>
+<p>After a few simplifications, the required answer can be expressed as</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [51]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">simplify</span><span class="p">(</span><span class="n">expectedDays</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[51]:</div>
+<div class="output_latex output_subarea output_execute_result">
+$$\sum_{j=2}^{99} \frac{j}{100} \left(j - 1\right) \prod_{i=0}^{j - 2} \left(- \frac{i}{100} + 1\right)$$
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is probably the point where something cool can be done, say for example, using  inequalities to get upper and lower bounds or conjuring up some distribution / arrangement that maps to these coefficients. I chose the boring method of letting the computer handle these calculations though. I was more interested in implementing a simulation for this problem and wanted the get the answer algebraically so that I can compare it with the number the simulation spits out.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [59]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">expectedDays</span> <span class="o">=</span> <span class="n">Sum</span><span class="p">(</span><span class="n">Product</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="p">)</span><span class="o">*</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">99</span><span class="p">))</span>
+<span class="n">expectedDays</span><span class="o">.</span><span class="n">evalf</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[59]:</div>
+<div class="output_latex output_subarea output_execute_result">
+$$13.209960630216$$
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Bonus-Credit-Solution">Bonus Credit Solution<a class="anchor-link" href="#Bonus-Credit-Solution">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In  case, a whole-tablet is $\lambda$ times more likely than a half-tablet to be picked</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [49]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">modifiedExpectedDays</span><span class="p">(</span><span class="n">Lambda</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Sum</span><span class="p">(</span><span class="n">Product</span><span class="p">((</span><span class="n">Lambda</span><span class="o">*</span><span class="p">(</span><span class="mi">100</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Lambda</span><span class="o">*</span><span class="p">(</span><span class="mi">100</span><span class="o">-</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span><span class="p">)),</span>
+                       <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Lambda</span><span class="o">*</span><span class="p">(</span><span class="mi">100</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+                       <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">99</span><span class="p">))</span><span class="o">.</span><span class="n">evalf</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [57]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">factor</span><span class="p">(</span><span class="n">modifiedExpectedDays</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[57]:</div>
+<div class="output_latex output_subarea output_execute_result">
+$$- \sum_{j=1}^{99} \frac{1}{j z - j - 99 z - 1} \left(j + 1\right) \left(j + 2\right) \prod_{i=0}^{j} \left(- \frac{i z}{- i z + i + 100 z} + \frac{100 z}{- i z + i + 100 z}\right)$$
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [58]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">modifiedExpectedDays</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># If the whole-tablet is twice as likely to be picked</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[58]:</div>
+<div class="output_latex output_subarea output_execute_result">
+$$17.7366576915744$$
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="How-the-expected-number-of-days-varies-with-Lambda">How the expected number of days varies with Lambda<a class="anchor-link" href="#How-the-expected-number-of-days-varies-with-Lambda">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [41]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">modifiedExpectedDays</span><span class="p">(</span><span class="n">factor</span><span class="p">))</span> <span class="k">for</span> <span class="n">factor</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">100</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [63]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.plotly</span> <span class="k">as</span> <span class="nn">py</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">201</span><span class="p">,</span><span class="mi">301</span><span class="p">,</span><span class="mi">401</span><span class="p">,</span><span class="mi">501</span><span class="p">,</span><span class="mi">601</span><span class="p">,</span><span class="mi">701</span><span class="p">,</span><span class="mi">801</span><span class="p">,</span><span class="mi">901</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">b</span><span class="p">,</span>
+            <span class="n">mode</span><span class="o">=</span><span class="s1">'lines+markers'</span><span class="p">,</span>
+            <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="s1">'spline'</span><span class="p">)</span>
+
+    <span class="p">)]</span>
+
+<span class="n">py</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">'spline-interpolation'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[63]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<iframe height="525px" id="igraph" scrolling="no" seamless="seamless" src="https://plot.ly/~shreeha/138.embed" style="border:none;" width="100%"></iframe>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [60]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">modifiedExpectedDays</span><span class="p">(</span><span class="mi">2000000000000000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[60]:</div>
+<div class="output_latex output_subarea output_execute_result">
+$$100.999999999998$$
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Converges to 101 just as expected</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Simulation-Solution">Simulation Solution<a class="anchor-link" href="#Simulation-Solution">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">plotly</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">sympy</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="o">*</span>
+<span class="n">init_printing</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">plotly</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Bottle,-Day-Zero">Bottle, Day Zero<a class="anchor-link" href="#Bottle,-Day-Zero">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [22]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bottle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Tablet-eject-logic">Tablet eject logic<a class="anchor-link" href="#Tablet-eject-logic">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [39]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">takeMedicine</span><span class="p">(</span><span class="n">sizeMatters</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">bottle</span>
+    <span class="k">if</span> <span class="n">sizeMatters</span><span class="p">:</span>
+        <span class="n">glottle</span> <span class="o">=</span> <span class="n">bottle</span><span class="p">[</span><span class="n">bottle</span> <span class="o">></span> <span class="mf">0.5</span><span class="p">]</span>
+        <span class="n">pill</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">bottle</span><span class="p">,</span><span class="n">glottle</span><span class="p">)))</span>
+    <span class="k">else</span><span class="p">:</span>    
+        <span class="n">pill</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">bottle</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pill</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">:</span>
+        <span class="n">bottle</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">bottle</span><span class="o">==</span><span class="mf">1.0</span><span class="p">)]</span> <span class="o">=</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Whole Tablets </span><span class="si">{}</span><span class="s2">, Half Tablets </span><span class="si">{}</span><span class="s2">     💊"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">currentStatus</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">currentStatus</span><span class="p">()[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">bottle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">bottle</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">bottle</span><span class="o">==</span><span class="mf">0.5</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Whole Tablets </span><span class="si">{}</span><span class="s2">, Half Tablets </span><span class="si">{}</span><span class="s2">     🚦 🚥"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">currentStatus</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">currentStatus</span><span class="p">()[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="mi">0</span>   
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Days-taken-to-pull-a-half-tablet-out">Days taken to pull a half-tablet out<a class="anchor-link" href="#Days-taken-to-pull-a-half-tablet-out">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">daysTaken</span><span class="p">(</span><span class="n">sizeMatters</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">bottle</span>
+    <span class="n">days</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">201</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">takeMedicine</span><span class="p">(</span><span class="n">sizeMatters</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
+            <span class="n">days</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bottle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">days</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Average-of-a-million-first-half-tablet-sightings">Average of a million first half-tablet sightings<a class="anchor-link" href="#Average-of-a-million-first-half-tablet-sightings">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">averageDays</span><span class="p">(</span><span class="n">sizeMatters</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">numberOfRuns</span><span class="o">=</span><span class="mi">1000000</span><span class="p">):</span>
+    <span class="n">totalDays</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numberOfRuns</span><span class="p">):</span>
+        <span class="n">totalDays</span> <span class="o">+=</span> <span class="n">daysTaken</span><span class="p">(</span><span class="n">sizeMatters</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>       
+    <span class="k">return</span> <span class="n">totalDays</span><span class="o">/</span><span class="n">numberOfRuns</span>      
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Results">Results<a class="anchor-link" href="#Results">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img alt="results" src="http://linkdot.link/images/runtime.jpeg" /></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Extra:-Entire-State-History">Extra: Entire State History<a class="anchor-link" href="#Extra:-Entire-State-History">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [20]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">completeRun</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">bottle</span>
+    <span class="n">days</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">201</span><span class="p">):</span>       
+        <span class="n">days</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"On Day </span><span class="si">{}</span><span class="s2">: "</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">days</span><span class="p">))</span>
+        <span class="n">takeMedicine</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">bottle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>    
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">currentStatus</span><span class="p">(</span><span class="n">noHalfPills</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">noMorePills</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">bottle</span>
+    <span class="n">unique</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">bottle</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">uniqueCounts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">unique</span><span class="p">,</span> <span class="n">counts</span><span class="p">))</span>
+        
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">numFullPills</span> <span class="o">=</span> <span class="n">uniqueCounts</span><span class="p">[</span><span class="mf">1.0</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">numFullPills</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">numHalfPills</span> <span class="o">=</span> <span class="n">uniqueCounts</span><span class="p">[</span><span class="mf">0.5</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">numHalfPills</span> <span class="o">=</span> <span class="mi">0</span>    
+    <span class="k">return</span> <span class="n">numFullPills</span><span class="p">,</span> <span class="n">numHalfPills</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [40]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">completeRun</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>On Day 1: 
+Whole Tablets 99, Half Tablets 1     💊
+On Day 2: 
+Whole Tablets 98, Half Tablets 2     💊
+On Day 3: 
+Whole Tablets 97, Half Tablets 3     💊
+On Day 4: 
+Whole Tablets 96, Half Tablets 4     💊
+On Day 5: 
+Whole Tablets 95, Half Tablets 5     💊
+On Day 6: 
+Whole Tablets 94, Half Tablets 6     💊
+On Day 7: 
+Whole Tablets 93, Half Tablets 7     💊
+On Day 8: 
+Whole Tablets 92, Half Tablets 8     💊
+On Day 9: 
+Whole Tablets 91, Half Tablets 9     💊
+On Day 10: 
+Whole Tablets 90, Half Tablets 10     💊
+On Day 11: 
+Whole Tablets 89, Half Tablets 11     💊
+On Day 12: 
+Whole Tablets 88, Half Tablets 12     💊
+On Day 13: 
+Whole Tablets 87, Half Tablets 13     💊
+On Day 14: 
+Whole Tablets 86, Half Tablets 14     💊
+On Day 15: 
+Whole Tablets 85, Half Tablets 15     💊
+On Day 16: 
+Whole Tablets 84, Half Tablets 16     💊
+On Day 17: 
+Whole Tablets 83, Half Tablets 17     💊
+On Day 18: 
+Whole Tablets 82, Half Tablets 18     💊
+On Day 19: 
+Whole Tablets 81, Half Tablets 19     💊
+On Day 20: 
+Whole Tablets 80, Half Tablets 20     💊
+On Day 21: 
+Whole Tablets 80, Half Tablets 19     🚦 🚥
+On Day 22: 
+Whole Tablets 79, Half Tablets 20     💊
+On Day 23: 
+Whole Tablets 78, Half Tablets 21     💊
+On Day 24: 
+Whole Tablets 77, Half Tablets 22     💊
+On Day 25: 
+Whole Tablets 77, Half Tablets 21     🚦 🚥
+On Day 26: 
+Whole Tablets 76, Half Tablets 22     💊
+On Day 27: 
+Whole Tablets 75, Half Tablets 23     💊
+On Day 28: 
+Whole Tablets 75, Half Tablets 22     🚦 🚥
+On Day 29: 
+Whole Tablets 75, Half Tablets 21     🚦 🚥
+On Day 30: 
+Whole Tablets 74, Half Tablets 22     💊
+On Day 31: 
+Whole Tablets 73, Half Tablets 23     💊
+On Day 32: 
+Whole Tablets 72, Half Tablets 24     💊
+On Day 33: 
+Whole Tablets 71, Half Tablets 25     💊
+On Day 34: 
+Whole Tablets 70, Half Tablets 26     💊
+On Day 35: 
+Whole Tablets 69, Half Tablets 27     💊
+On Day 36: 
+Whole Tablets 68, Half Tablets 28     💊
+On Day 37: 
+Whole Tablets 68, Half Tablets 27     🚦 🚥
+On Day 38: 
+Whole Tablets 67, Half Tablets 28     💊
+On Day 39: 
+Whole Tablets 66, Half Tablets 29     💊
+On Day 40: 
+Whole Tablets 65, Half Tablets 30     💊
+On Day 41: 
+Whole Tablets 64, Half Tablets 31     💊
+On Day 42: 
+Whole Tablets 63, Half Tablets 32     💊
+On Day 43: 
+Whole Tablets 62, Half Tablets 33     💊
+On Day 44: 
+Whole Tablets 61, Half Tablets 34     💊
+On Day 45: 
+Whole Tablets 61, Half Tablets 33     🚦 🚥
+On Day 46: 
+Whole Tablets 60, Half Tablets 34     💊
+On Day 47: 
+Whole Tablets 60, Half Tablets 33     🚦 🚥
+On Day 48: 
+Whole Tablets 59, Half Tablets 34     💊
+On Day 49: 
+Whole Tablets 58, Half Tablets 35     💊
+On Day 50: 
+Whole Tablets 57, Half Tablets 36     💊
+On Day 51: 
+Whole Tablets 56, Half Tablets 37     💊
+On Day 52: 
+Whole Tablets 55, Half Tablets 38     💊
+On Day 53: 
+Whole Tablets 54, Half Tablets 39     💊
+On Day 54: 
+Whole Tablets 54, Half Tablets 38     🚦 🚥
+On Day 55: 
+Whole Tablets 53, Half Tablets 39     💊
+On Day 56: 
+Whole Tablets 53, Half Tablets 38     🚦 🚥
+On Day 57: 
+Whole Tablets 52, Half Tablets 39     💊
+On Day 58: 
+Whole Tablets 51, Half Tablets 40     💊
+On Day 59: 
+Whole Tablets 51, Half Tablets 39     🚦 🚥
+On Day 60: 
+Whole Tablets 51, Half Tablets 38     🚦 🚥
+On Day 61: 
+Whole Tablets 50, Half Tablets 39     💊
+On Day 62: 
+Whole Tablets 50, Half Tablets 38     🚦 🚥
+On Day 63: 
+Whole Tablets 49, Half Tablets 39     💊
+On Day 64: 
+Whole Tablets 48, Half Tablets 40     💊
+On Day 65: 
+Whole Tablets 48, Half Tablets 39     🚦 🚥
+On Day 66: 
+Whole Tablets 47, Half Tablets 40     💊
+On Day 67: 
+Whole Tablets 47, Half Tablets 39     🚦 🚥
+On Day 68: 
+Whole Tablets 46, Half Tablets 40     💊
+On Day 69: 
+Whole Tablets 46, Half Tablets 39     🚦 🚥
+On Day 70: 
+Whole Tablets 46, Half Tablets 38     🚦 🚥
+On Day 71: 
+Whole Tablets 46, Half Tablets 37     🚦 🚥
+On Day 72: 
+Whole Tablets 46, Half Tablets 36     🚦 🚥
+On Day 73: 
+Whole Tablets 45, Half Tablets 37     💊
+On Day 74: 
+Whole Tablets 44, Half Tablets 38     💊
+On Day 75: 
+Whole Tablets 43, Half Tablets 39     💊
+On Day 76: 
+Whole Tablets 42, Half Tablets 40     💊
+On Day 77: 
+Whole Tablets 41, Half Tablets 41     💊
+On Day 78: 
+Whole Tablets 40, Half Tablets 42     💊
+On Day 79: 
+Whole Tablets 39, Half Tablets 43     💊
+On Day 80: 
+Whole Tablets 38, Half Tablets 44     💊
+On Day 81: 
+Whole Tablets 38, Half Tablets 43     🚦 🚥
+On Day 82: 
+Whole Tablets 37, Half Tablets 44     💊
+On Day 83: 
+Whole Tablets 36, Half Tablets 45     💊
+On Day 84: 
+Whole Tablets 36, Half Tablets 44     🚦 🚥
+On Day 85: 
+Whole Tablets 35, Half Tablets 45     💊
+On Day 86: 
+Whole Tablets 35, Half Tablets 44     🚦 🚥
+On Day 87: 
+Whole Tablets 35, Half Tablets 43     🚦 🚥
+On Day 88: 
+Whole Tablets 35, Half Tablets 42     🚦 🚥
+On Day 89: 
+Whole Tablets 34, Half Tablets 43     💊
+On Day 90: 
+Whole Tablets 34, Half Tablets 42     🚦 🚥
+On Day 91: 
+Whole Tablets 33, Half Tablets 43     💊
+On Day 92: 
+Whole Tablets 32, Half Tablets 44     💊
+On Day 93: 
+Whole Tablets 32, Half Tablets 43     🚦 🚥
+On Day 94: 
+Whole Tablets 32, Half Tablets 42     🚦 🚥
+On Day 95: 
+Whole Tablets 32, Half Tablets 41     🚦 🚥
+On Day 96: 
+Whole Tablets 31, Half Tablets 42     💊
+On Day 97: 
+Whole Tablets 30, Half Tablets 43     💊
+On Day 98: 
+Whole Tablets 30, Half Tablets 42     🚦 🚥
+On Day 99: 
+Whole Tablets 29, Half Tablets 43     💊
+On Day 100: 
+Whole Tablets 29, Half Tablets 42     🚦 🚥
+On Day 101: 
+Whole Tablets 28, Half Tablets 43     💊
+On Day 102: 
+Whole Tablets 28, Half Tablets 42     🚦 🚥
+On Day 103: 
+Whole Tablets 27, Half Tablets 43     💊
+On Day 104: 
+Whole Tablets 27, Half Tablets 42     🚦 🚥
+On Day 105: 
+Whole Tablets 26, Half Tablets 43     💊
+On Day 106: 
+Whole Tablets 25, Half Tablets 44     💊
+On Day 107: 
+Whole Tablets 25, Half Tablets 43     🚦 🚥
+On Day 108: 
+Whole Tablets 24, Half Tablets 44     💊
+On Day 109: 
+Whole Tablets 24, Half Tablets 43     🚦 🚥
+On Day 110: 
+Whole Tablets 24, Half Tablets 42     🚦 🚥
+On Day 111: 
+Whole Tablets 24, Half Tablets 41     🚦 🚥
+On Day 112: 
+Whole Tablets 23, Half Tablets 42     💊
+On Day 113: 
+Whole Tablets 22, Half Tablets 43     💊
+On Day 114: 
+Whole Tablets 22, Half Tablets 42     🚦 🚥
+On Day 115: 
+Whole Tablets 21, Half Tablets 43     💊
+On Day 116: 
+Whole Tablets 20, Half Tablets 44     💊
+On Day 117: 
+Whole Tablets 20, Half Tablets 43     🚦 🚥
+On Day 118: 
+Whole Tablets 19, Half Tablets 44     💊
+On Day 119: 
+Whole Tablets 18, Half Tablets 45     💊
+On Day 120: 
+Whole Tablets 17, Half Tablets 46     💊
+On Day 121: 
+Whole Tablets 17, Half Tablets 45     🚦 🚥
+On Day 122: 
+Whole Tablets 17, Half Tablets 44     🚦 🚥
+On Day 123: 
+Whole Tablets 16, Half Tablets 45     💊
+On Day 124: 
+Whole Tablets 15, Half Tablets 46     💊
+On Day 125: 
+Whole Tablets 14, Half Tablets 47     💊
+On Day 126: 
+Whole Tablets 13, Half Tablets 48     💊
+On Day 127: 
+Whole Tablets 13, Half Tablets 47     🚦 🚥
+On Day 128: 
+Whole Tablets 13, Half Tablets 46     🚦 🚥
+On Day 129: 
+Whole Tablets 13, Half Tablets 45     🚦 🚥
+On Day 130: 
+Whole Tablets 13, Half Tablets 44     🚦 🚥
+On Day 131: 
+Whole Tablets 12, Half Tablets 45     💊
+On Day 132: 
+Whole Tablets 11, Half Tablets 46     💊
+On Day 133: 
+Whole Tablets 11, Half Tablets 45     🚦 🚥
+On Day 134: 
+Whole Tablets 11, Half Tablets 44     🚦 🚥
+On Day 135: 
+Whole Tablets 11, Half Tablets 43     🚦 🚥
+On Day 136: 
+Whole Tablets 11, Half Tablets 42     🚦 🚥
+On Day 137: 
+Whole Tablets 11, Half Tablets 41     🚦 🚥
+On Day 138: 
+Whole Tablets 11, Half Tablets 40     🚦 🚥
+On Day 139: 
+Whole Tablets 11, Half Tablets 39     🚦 🚥
+On Day 140: 
+Whole Tablets 11, Half Tablets 38     🚦 🚥
+On Day 141: 
+Whole Tablets 10, Half Tablets 39     💊
+On Day 142: 
+Whole Tablets 9, Half Tablets 40     💊
+On Day 143: 
+Whole Tablets 9, Half Tablets 39     🚦 🚥
+On Day 144: 
+Whole Tablets 8, Half Tablets 40     💊
+On Day 145: 
+Whole Tablets 8, Half Tablets 39     🚦 🚥
+On Day 146: 
+Whole Tablets 8, Half Tablets 38     🚦 🚥
+On Day 147: 
+Whole Tablets 8, Half Tablets 37     🚦 🚥
+On Day 148: 
+Whole Tablets 8, Half Tablets 36     🚦 🚥
+On Day 149: 
+Whole Tablets 7, Half Tablets 37     💊
+On Day 150: 
+Whole Tablets 6, Half Tablets 38     💊
+On Day 151: 
+Whole Tablets 5, Half Tablets 39     💊
+On Day 152: 
+Whole Tablets 5, Half Tablets 38     🚦 🚥
+On Day 153: 
+Whole Tablets 4, Half Tablets 39     💊
+On Day 154: 
+Whole Tablets 3, Half Tablets 40     💊
+On Day 155: 
+Whole Tablets 3, Half Tablets 39     🚦 🚥
+On Day 156: 
+Whole Tablets 3, Half Tablets 38     🚦 🚥
+On Day 157: 
+Whole Tablets 3, Half Tablets 37     🚦 🚥
+On Day 158: 
+Whole Tablets 3, Half Tablets 36     🚦 🚥
+On Day 159: 
+Whole Tablets 3, Half Tablets 35     🚦 🚥
+On Day 160: 
+Whole Tablets 3, Half Tablets 34     🚦 🚥
+On Day 161: 
+Whole Tablets 3, Half Tablets 33     🚦 🚥
+On Day 162: 
+Whole Tablets 3, Half Tablets 32     🚦 🚥
+On Day 163: 
+Whole Tablets 3, Half Tablets 31     🚦 🚥
+On Day 164: 
+Whole Tablets 3, Half Tablets 30     🚦 🚥
+On Day 165: 
+Whole Tablets 3, Half Tablets 29     🚦 🚥
+On Day 166: 
+Whole Tablets 3, Half Tablets 28     🚦 🚥
+On Day 167: 
+Whole Tablets 2, Half Tablets 29     💊
+On Day 168: 
+Whole Tablets 2, Half Tablets 28     🚦 🚥
+On Day 169: 
+Whole Tablets 2, Half Tablets 27     🚦 🚥
+On Day 170: 
+Whole Tablets 2, Half Tablets 26     🚦 🚥
+On Day 171: 
+Whole Tablets 1, Half Tablets 27     💊
+On Day 172: 
+Whole Tablets 1, Half Tablets 26     🚦 🚥
+On Day 173: 
+Whole Tablets 1, Half Tablets 25     🚦 🚥
+On Day 174: 
+Whole Tablets 1, Half Tablets 24     🚦 🚥
+On Day 175: 
+Whole Tablets 1, Half Tablets 23     🚦 🚥
+On Day 176: 
+Whole Tablets 1, Half Tablets 22     🚦 🚥
+On Day 177: 
+Whole Tablets 1, Half Tablets 21     🚦 🚥
+On Day 178: 
+Whole Tablets 0, Half Tablets 22     💊
+On Day 179: 
+Whole Tablets 0, Half Tablets 21     🚦 🚥
+On Day 180: 
+Whole Tablets 0, Half Tablets 20     🚦 🚥
+On Day 181: 
+Whole Tablets 0, Half Tablets 19     🚦 🚥
+On Day 182: 
+Whole Tablets 0, Half Tablets 18     🚦 🚥
+On Day 183: 
+Whole Tablets 0, Half Tablets 17     🚦 🚥
+On Day 184: 
+Whole Tablets 0, Half Tablets 16     🚦 🚥
+On Day 185: 
+Whole Tablets 0, Half Tablets 15     🚦 🚥
+On Day 186: 
+Whole Tablets 0, Half Tablets 14     🚦 🚥
+On Day 187: 
+Whole Tablets 0, Half Tablets 13     🚦 🚥
+On Day 188: 
+Whole Tablets 0, Half Tablets 12     🚦 🚥
+On Day 189: 
+Whole Tablets 0, Half Tablets 11     🚦 🚥
+On Day 190: 
+Whole Tablets 0, Half Tablets 10     🚦 🚥
+On Day 191: 
+Whole Tablets 0, Half Tablets 9     🚦 🚥
+On Day 192: 
+Whole Tablets 0, Half Tablets 8     🚦 🚥
+On Day 193: 
+Whole Tablets 0, Half Tablets 7     🚦 🚥
+On Day 194: 
+Whole Tablets 0, Half Tablets 6     🚦 🚥
+On Day 195: 
+Whole Tablets 0, Half Tablets 5     🚦 🚥
+On Day 196: 
+Whole Tablets 0, Half Tablets 4     🚦 🚥
+On Day 197: 
+Whole Tablets 0, Half Tablets 3     🚦 🚥
+On Day 198: 
+Whole Tablets 0, Half Tablets 2     🚦 🚥
+On Day 199: 
+Whole Tablets 0, Half Tablets 1     🚦 🚥
+On Day 200: 
+Whole Tablets 0, Half Tablets 0     🚦 🚥
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://linkdot.link/tag/probability.html">Probability</a>
+      <a href="http://linkdot.link/tag/ipython.html">Ipython</a>
+      <a href="http://linkdot.link/tag/mathematics.html">Mathematics</a>
+      <a href="http://linkdot.link/tag/markov-chains.html">Markov Chains</a>
+      <a href="http://linkdot.link/tag/five-thirty-eight.html">Five Thirty Eight</a>
+      <a href="http://linkdot.link/tag/riddlerr.html">Riddlerr</a>
+    </p>
+  </div>
+
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'linkdot';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+        Please enable JavaScript to view comments.
+
+</noscript>
+</article>
+
+    <footer>
+<p>&copy; Sriharsha Bangaru </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>. That cunning animation @topLeft  is by <a href="https://beesandbombs.tumblr.com/" target="_blank"> David Whyte </a>
+</p>    </footer>
+  </main>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-78881164-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Dotlink ",
+  "url" : "http://linkdot.link",
+  "image": "",
+  "description": ""
+}
+</script>
+</body>
+</html>

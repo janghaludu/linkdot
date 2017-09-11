@@ -3,9 +3,7 @@ Date: 2016-10-29 02:29
 Tags: Mathematics, Python, Similarity, last.fm, Dot Product
 
 
-### Problem Statement
-
-I want to compare my last.fm dataset with that of my friend's and arrive at a metric that quantifies the similarity between us in terms of musical preferences. I'm looking at just one variable here, the number of times a particular artist is played and will approach this problem using basic Mathematics and Python. Nothing fancy.
+I want to compare my last.fm scrobbles with that of my friend's and arrive at a metric that quantifies the similarity between us in terms of musical preferences. I'm looking at just one variable here, the number of times a particular artist is played and will approach this problem using basic  Mathematics and Python. Nothing fancy.
 
 The dataset I'm comparing mine with is about 9 times more voluminous - 9000 vs 80000 plays. I used to listen to my music primarily on my iPod so unfortunately, all that I have to show on last.fm is the music I played on my laptop and about an year of data scrobbled from Rdio. So the data I have there, though is reflective of the kind of music I listen to - post punk, indie, experimental, noise etc, it is not reflective of *all the artists* I've been listening to over the years. Luckily enough, after about an hour of frantic searching, I managed to find a backup of my ipod stats for the years 2005 - 09. *Pats past-self on his back* Now we are looking at a more respectable 34000 vs 80000
 
@@ -21,7 +19,7 @@ The dataset I'm comparing mine with is about 9 times more voluminous - 9000 vs 8
 1. Using *common artists* doesn't look like a good idea. Consider this trivial edge case. A and B listen to 1000 bands each, of which 10 are common. If their playing habits were similar for these 10 bands, does that mean their music tastes are similar? Of course not. One thing that comes at the top of my head is to multiply the cosine value with a function that quantifies the magnitude of common artists relative to the total number. Some thing like proportion of common artists to the total number of artists - $\frac{n(X\cap Y)}{n(X\cup Y)}$ Alternatively, take the union of artists from both the data sets and take them as base vectors. If a user hasn't heard a particular band, his component along the base vector would be zero, thereby contributing nothing to the numerator (Dot Product) but contributing to the denominator (Product of Magnitudes) and thus decreasing the compatibility value.
 
 
-2. Why dot product? How about a custom function say 1 upon 1 + Euclidean distance between the vector coordinates? How about using other metrics for distance like Minkowski distance? How about using Pearson Correlation Score? I could think of a simpler function where there is no need to bother about the concept of distance at all. Let $  a_1, a_2, a_3,......, a_n$ be the union of artists present in both the sets and let $a_{m}^{x}, a_{m}^{y}$ represent the play counts of artist $a_m$ by $X$ and $Y$ respectively. Now consider the function $$s(x) = \frac{\sum_{i\in X \cap Y } \frac{min(a_{i}^{x},a_{i}^{y} )}{max(a_{i}^{x},a_{i}^{y} )}}{n(X \cap Y)}$$  with a range $[0,1]$. How effective would this be in quantifying what we want? It churns out 1 if and only if the play counts of all the respective common artists are exactly the same across both the users, as opposed to the naive approach where it is 1 in case of the ratio of number of plays of each artist across the both sets is constant. That can however be taken care of by normalizing the data sets before the computation.
+2. Why dot product? How about a custom function say 1 upon 1 + Euclidean distance between the vector coordinates? How about using other metrics for distance like Minkowski distance? How about using Pearson Correlation Score? I could think of a simpler function where there is no need to bother about the concept of distance at all. Let $  a_1, a_2, a_3,......, a_n$ be the union of artists present in both the sets and let $a_{m}^{x}, a_{m}^{y}$ represent the play counts of artist $a_m$ by $X$ and $Y$ respectively. Now consider the function $$s(x) = \frac{\sum_{i\in X \cap Y } \frac{min(a_{i}^{x},a_{i}^{y} )}{max(a_{i}^{x},a_{i}^{y} )}}{n(X \cap Y)}$$  with a range $[0,1]$. How effective would this be in quantifying what we want? It churns out 1 if and only if the play counts of all the respective common artists are exactly the same across both the users, as opposed to the naive approach where it is 1 in case of the ratio of number of plays of each artist across the both sets is constant.
 
 # Results
 (computed in Common Artists Mode with and without ipod data)
@@ -30,9 +28,8 @@ The dataset I'm comparing mine with is about 9 times more voluminous - 9000 vs 8
 2. Dot Product Cosine  -  0.416 & **0.2815**
 3. $s(x)$ score - 0.296 & 0.2633
 
-That function I created out of thin air appears to be more consistent! And also pretty close to the **29%** similarity we seem to have according to last.fm! **Whoa!** I'm assuming it's just a coincidence. Will run this function over other data sets and see how it fares.
+That function I created out of thin air appears to be more consistent! And also pretty close to the **29%** similarity we seem to have according to last.fm! Nice.
 
-So, in conclusion, last.fm's similarity metric is most likely based on cosine similarity among common artists.
 # Code
 
 Used [this](https://gist.github.com/bitmorse/5201491) script to download last.fm data to a text file. Removed the data that isn't relevant to the task at hand - artist, album, song ids at musicbrainz. The data set I downloaded for my user profile was unfortunately missing values(Song and Album names) at many places. Had to fix that first. Then I had to clean up my ipod data and merge it with the last.fm data. Duplication due to wrong capitalization, Spellings, 'The' issues. *Fun times.*
@@ -133,7 +130,7 @@ Need to refer to literature on this and learn more about various similarity metr
 **Update**: [WOW!](http://www.iiisci.org/journal/CV$/sci/pdfs/GS315JG.pdf)
 
 
-# Common Artists' Data
+# Common Artists' Data (sorted by playcount of the artists I've listened to)
 
 For those who are interested
 

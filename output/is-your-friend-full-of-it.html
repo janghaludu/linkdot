@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://linkdot.link/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://linkdot.link/theme/pygments/monokai.min.css">
+  <link rel="stylesheet" type="text/css" href="http://linkdot.link/theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Sriharsha Bangaru" />
+<meta name="description" content="Five Thirty Eight Riddler Express Problem - Sep 1, 2017¶You’re hanging out with some friends, shooting the breeze and talking sports. One of them brags to the group that he once made 17 free throws in a row after years of not having touched a basketball. You think the claim sounds unlikely, but plausible. Another friend scoffs, thinking it completely impossible. Let’s give your bragging friend the benefit of the doubt and say he’s a 70-percent free-throw shooter." />
+<meta name="keywords" content="Probability, Ipython, Mathematics, Simulation, Five Thirty Eight, Riddler">
+<meta property="og:site_name" content="Dotlink"/>
+<meta property="og:title" content="Is your friend full of it?"/>
+<meta property="og:description" content="Five Thirty Eight Riddler Express Problem - Sep 1, 2017¶You’re hanging out with some friends, shooting the breeze and talking sports. One of them brags to the group that he once made 17 free throws in a row after years of not having touched a basketball. You think the claim sounds unlikely, but plausible. Another friend scoffs, thinking it completely impossible. Let’s give your bragging friend the benefit of the doubt and say he’s a 70-percent free-throw shooter."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://linkdot.link/is-your-friend-full-of-it.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2017-09-02 09:32:00+05:30"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://linkdot.link/author/sriharsha-bangaru.html">
+<meta property="article:section" content="misc"/>
+<meta property="article:tag" content="Probability"/>
+<meta property="article:tag" content="Ipython"/>
+<meta property="article:tag" content="Mathematics"/>
+<meta property="article:tag" content="Simulation"/>
+<meta property="article:tag" content="Five Thirty Eight"/>
+<meta property="article:tag" content="Riddler"/>
+<meta property="og:image" content="">
+
+  <title>Dotlink &ndash; Is your friend full of it?</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://linkdot.link">
+        <img src="http://linkdot.link/theme/img/ring.gif" alt="Sriharsha Bangaru" title="Sriharsha Bangaru">
+      </a>
+      <h1><a href="http://linkdot.link">Sriharsha Bangaru</a></h1>
+
+<p>Mathematics | Programming | Art</p>
+      <nav>
+        <ul class="list">
+
+          <li><a href="#" target="_blank">About</a></li>
+          <li><a href="#" target="_blank">Categories</a></li>
+          <li><a href="#" target="_blank">Primers</a></li>
+          <li><a href="#" target="_blank">Projects</a></li>
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-lastfm" href="https://github.com/djanghaludu" target="_blank"><i class="fa fa-lastfm"></i></a></li>
+        <li><a class="sc-github-alt" href="https://github.com/djanghaludu" target="_blank"><i class="fa fa-github-alt"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/pfatagaga" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-instagram" href="https://instagram.com/pfatagaga" target="_blank"><i class="fa fa-instagram"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+    <h1 id="is-your-friend-full-of-it">Is your friend full of it?</h1>
+    <p>
+          Posted on Sat 02 September 2017 in <a href="http://linkdot.link/category/misc.html">misc</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Five-Thirty-Eight-Riddler-Express-Problem---Sep-1,-2017">Five Thirty Eight Riddler Express Problem - Sep 1, 2017<a class="anchor-link" href="#Five-Thirty-Eight-Riddler-Express-Problem---Sep-1,-2017">¶</a></h2><blockquote><p>You’re hanging out with some friends, shooting the breeze and talking sports. One of them brags to the group that he once made 17 free throws in a row after years of not having touched a basketball. You think the claim sounds unlikely, but plausible. Another friend scoffs, thinking it completely impossible. Let’s give your bragging friend the benefit of the doubt and say he’s a 70-percent free-throw shooter.</p>
+<p>So, who’s right? What is the number of free throws that a 70-percent shooter would be expected to take before having a streak of 17 makes in a row? And what if his accuracy was a bit worse?</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This looks like a pretty innocuous Bernoulli's trials problem but it isn't! Had the question been about the average number of throws taken for 17 successes, the answer would have been straightforward - $$0.7\sum_{n=16}^{\infty} n\binom {n} {16}0.7^{16}0.3^{n-16} = 17/0.7 \approx 24.3$$</p>
+<p>But the question we are dealing with is about the average number of throws that are required for 17 consecutive makes in a row. I have a vague recollection of this problem being dealt with in Feller's Volume 1 and it not being pretty at all.
+<br><br>
+I fooled around a bit and tried to count sequences of the kind $S_20S_1$, where $S_1$ is a sequence of 17 ones and $S_2$ is a sequence of zeroes and ones of any length such that $S_2$ does not contain $S_1$ as a substring but gave up after seeing how this approach quickly degenerated into an absolute mess. Maybe a recursive way of generating $S_2$ sequences could do the trick.</br></br></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Simulation-Time!">Simulation Time!<a class="anchor-link" href="#Simulation-Time!">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At first, I thought I should replicate the entire process as it is, by doing runs of <em>shooting the ball till 17 consecutive throws are successful</em> and calculate the average number of attempts. For example, each run can be mapped to a string comprising only <em>s</em> and <em>f</em> characters, representing success and failure respectively, with one character generated at a time (with their respective probabilities), that terminates when <em>s</em> turns up 17 times consecutively. Repeat this a million times and calculate the average length of all these strings and we have the answer. This would involve setting up a counter for the number of times <em>s</em> is generated consecutively and resetting the counter to zero when an $f$ is generated and repeating it till <em>s</em> appears 17 times consecutively for each run. 
+<br> <br>
+It then occurred to me that since these are all independent trials, I could just generate one long string of say 100 million characters, find all occurences of $S_1=sssssssssssssssss$ substrings in that and treat <em>every substring between two adjacent $S_1$ substrings</em> as a successful run(sans the success tail)! I must admit I am pretty pleased with myself here.</br></br></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">averageNumberOfThrows</span><span class="p">(</span><span class="n">accuracy</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">((</span><span class="s1">'s'</span><span class="p">,</span> <span class="s1">'f'</span><span class="p">),</span> <span class="mi">100000000</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="n">accuracy</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">accuracy</span><span class="p">])</span><span class="o">.</span><span class="n">tostring</span><span class="p">()</span>
+    <span class="n">seventeenShots</span> <span class="o">=</span> <span class="s1">'s'</span><span class="o">*</span><span class="mi">17</span>   
+    
+    <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">seventeenShots</span><span class="p">,</span> <span class="n">y</span><span class="p">)]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">value</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="o"><</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">17</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">averageNumberOfThrows</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>1424</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="How-this-varies-with-the-shooter's-accuracy">How this varies with the shooter's accuracy<a class="anchor-link" href="#How-this-varies-with-the-shooter's-accuracy">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.plotly</span> <span class="kn">as</span> <span class="nn">py</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="kn">as</span> <span class="nn">go</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">averageNumberOfThrows</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span> <span class="k">for</span> <span class="n">accuracy</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.71</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)]</span>
+
+<span class="n">pata</span> <span class="o">=</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.71</span><span class="p">,</span><span class="mf">0.01</span><span class="p">),</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">mode</span><span class="o">=</span><span class="s1">'lines+markers'</span><span class="p">,</span>
+            <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="s1">'spline'</span><span class="p">)</span>
+        <span class="p">)]</span>
+
+<span class="n">py</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">pata</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">'spline-interpolation'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<iframe height="525px" id="igraph" scrolling="no" seamless="seamless" src="https://plot.ly/~shreeha/138.embed" style="border:none;" width="100%"></iframe>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Quite a lot it seems! Average number of attempts goes all the way upto 14000 if the accuracy goes down to 60%</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [19]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">averageNumberOfThrows</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>189</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [20]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">averageNumberOfThrows</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>44</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://linkdot.link/tag/probability.html">Probability</a>
+      <a href="http://linkdot.link/tag/ipython.html">Ipython</a>
+      <a href="http://linkdot.link/tag/mathematics.html">Mathematics</a>
+      <a href="http://linkdot.link/tag/simulation.html">Simulation</a>
+      <a href="http://linkdot.link/tag/five-thirty-eight.html">Five Thirty Eight</a>
+      <a href="http://linkdot.link/tag/riddler.html">Riddler</a>
+    </p>
+  </div>
+
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'linkdot';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+        Please enable JavaScript to view comments.
+
+</noscript>
+</article>
+
+    <footer>
+<p>&copy; Sriharsha Bangaru </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>. That cunning animation @topLeft  is by <a href="https://beesandbombs.tumblr.com/" target="_blank"> David Whyte </a>
+</p>    </footer>
+  </main>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-78881164-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Dotlink ",
+  "url" : "http://linkdot.link",
+  "image": "",
+  "description": ""
+}
+</script>
+</body>
+</html>

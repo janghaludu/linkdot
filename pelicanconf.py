@@ -6,7 +6,11 @@ MARKUP = ('md', 'ipynb')
 AUTHOR = u'Sriharsha Bangaru'
 SITENAME = u'Dotlink'
 SITEURL = 'http://linkdot.link'
-THEME = 'themes/pure-single'
+SITETITLE = AUTHOR
+SITESUBTITLE = 'Mathematics | Programming | Art'
+THEME = 'themes/Flex'
+PYGMENTS_STYLE = 'monokai'
+
 COVER_IMG_URL = ''
 PROFILE_IMG_URL = 'https://media.giphy.com/media/LMEKcLACS5xDi/giphy.gif' 
 TAGLINE = 'Mathematics | Programming | Art'
@@ -30,8 +34,8 @@ MENUITEMS = [('Blog', 'index.html'),
 SECTIONS = [('Blog', 'index.html'),
         ('Archive', 'archives.html'),
         ('Tags', 'tags.html'),
-        ('Projects', 'pages/projects.html'),
-        ('Talks', 'pages/talks.html'),
+        ('Primers', 'pages/projects.html'),
+        ('Projects', 'pages/talks.html'),
         ('About', 'pages/about-me.html')]
 
 # Feed generation is usually not desired when developing
@@ -42,17 +46,17 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
+LINKS = (('About','#'),
+         ('Categories', '#'),
+         ('Primers', '#'),
+         ('Projects', '#'),)
 
 # Social widget
 SOCIAL = (
     ('lastfm', 'https://github.com/djanghaludu'),
     ('github-alt', 'https://github.com/djanghaludu'),
     ('twitter', 'https://twitter.com/pfatagaga'),
-    ('instagram', 'ca.linkedin.com/in/marktwain'))
+    ('instagram', 'https://instagram.com/pfatagaga'))
 
 DEFAULT_PAGINATION = 10
 
@@ -62,7 +66,7 @@ PLUGIN_PATHS = ['plugins','./plugins']
 #PLUGIN_PATH = './plugins'
 PLUGINS = ["pelican_plugin-render_math", 'ipynb.markup']
 MATH_JAX = {'color': 'brown'}
-
+GOOGLE_ANALYTICS = 'UA-78881164-1'
 
 
 
