@@ -1,0 +1,176 @@
+    1  apt-get install pip
+    2  sudo apt-get install python-setuptools python-dev build-essential
+    3  sudo easy_install pip
+    4  sudo pip install --upgrade virtualenv
+    5  cd /var/www/
+    6  ls
+    7  rm -r linkdot
+    8  ls
+    9  mkdir dotlink
+   10  cd dotlink/
+   11  pip install pelican
+   12  pip install markdown
+   13  pelican-quickstart
+   14  ls
+   15  cd content
+   16  nano testing.md
+   17  make html
+   18  make devserver
+   19  cd ..
+   20  make html
+   21  history
+   22  cd /etc/apache2/sites-available/
+   23  ls
+   24  cp yantrams.conf dotlink.conf
+   25  nano dotlink.conf 
+   26  cd /var/www/dotlink/
+   27  ls
+   28  cd output/
+   29  ls
+   30  cd ..
+   31  sudo a2ensite dotlink
+   32  service apache2 reload
+   33  cd dotlink/
+   34  ls
+   35  git clone --recursive https://github.com/getpelican/pelican-themes /var/www/dotlink/pelican-themes/
+   36  ls
+   37  nano pelicanconf.py
+   38  ls
+   39  mkdir themes
+   40  cd themes/
+   41  git clone https://github.com/PurePelicanTheme/pure-single.git
+   42  cd ..
+   43  nano pelicanconf.py
+   44  ls themes/
+   45  nano pelicanconf.py
+   46  make html
+   47  nano pelicanconf.py
+   48  make html
+   49  nano pelicanconf.py
+   50  make html
+   51  nano pelicanconf.py
+   52  make html
+   53  nano pelicanconf.py
+   54  make html
+   55  cd themes/
+   56  cd pure-single/
+   57  ls
+   58  cd static/
+   59  ls
+   60  cd css/
+   61  ls
+   62  nano pure.css 
+   63  cd ../..
+   64  ls
+   65  cd templates/
+   66  ls
+   67  nano index.html 
+   68  nano base.html 
+   69  cd ../..
+   70  cd ..
+   71  cd output/
+   72  ls
+   73  cd /var/www/dotlink/
+   74  cd ..
+   75  cd
+   76  mkdir backup
+   77  cd /var/www/
+   78  cd dotlink/
+   79  ls
+   80  cd themes/
+   81  ls
+   82  ls pure-single/
+   83  cp -R pure-single/ ~/backup/
+   84  ls ~/backup/pure-single/
+   85  ls ~/backup/pure-single/templates/
+   86  cd ..
+   87  cat pelicanconf.py
+   88  nano pelicanconf.py
+   89  cd ..
+   90  ls
+   91  mkdir linkdot
+   92  cp -R dotlink/* linkdot/
+   93  cd linkdot/
+   94  ls
+   95  nano pelicanconf.py
+   96  history
+   97  cd /etc/apache2/sites-available/
+   98  ls
+   99  cp dotlink.conf linkdot.conf
+  100  nano linkdot.conf 
+  101  cd /var/www/
+  102  sudo a2ensite linkdot
+  103  service apache2 reload
+  104  cd linkdot/
+  105  make html
+  106  ls
+  107  cat pelicanconf.py
+  108  make html
+  109  nano content/quantifying-similarity.md 
+  110  ls  content/
+  111  nano content/quantifying-similarity.md 
+  112  nano content/testing.md 
+  113  make html
+  114  cd /var/www/linkdot/
+  115  nano content/probability-pringle.md 
+  116  ca /var/www/tabacus/
+  117  ls
+  118  cd //var/www/tabacus/
+  119  ls
+  120  edit /etc/php/7.0/apache2/php.ini
+  121  cd /var/log
+  122  ls
+  123  cd apache2/
+  124  ls
+  125  cd /var/www/linkdot/
+  126  ls
+  127  nano pelicanconf.py
+  128  make html
+  129  cd themes/
+  130  ls
+  131  cd Flex/
+  132  ls
+  133  ls static/
+  134  ls templates/
+  135  nano templates/base.html 
+  136  nano templates/index.html 
+  137  cd ../..
+  138  ls
+  139  cd themes/Flex/
+  140  ls
+  141  cd templates/
+  142  ls
+  143  cat base.html | grep "theme by"
+  144  cat page.html | grep "theme by"
+  145  cat index.html | grep "theme by"
+  146  grep -rnw '/var/www/linkdot/themes/' -e 'theme by'
+  147  nano partial/flex.html 
+  148  cd /var/www/linkdot/
+  149  nano content/freeThrows.ipynb
+  150  make html
+  151  cd /var/www/linkdot/
+  152  nano content/freeThrows.ipynb
+  153  make html
+  154  cd /var/www/linkdot/
+  155  edit content/freeThrows.ipynb-meta 
+  156  cd /var/www/linkdot/
+  157  ls
+  158  git status
+  159  git add .
+  160  git status
+  161  git commit -m "Server shift backup"
+  162  git push origin master
+  163  cd themes/
+  164  ls
+  165  cd ..
+  166  ls
+  167  zip -r themeBackup.zip themes/Flex themes/pure-single
+  168  sudo apt install zip
+  169  zip -r themeBackup.zip themes/Flex themes/pure-single
+  170  ls | grep theme
+  171  git add .
+  172  git commit -m "Themes backup"
+  173  git push origin master
+  174  history | grep wc -l
+  175  history
+  176  history >>  setupScript
