@@ -10,35 +10,35 @@ Results vary from spell bounding to absolutely rotten depending on the availabil
 <br> <br>
 
 
-![image](afiles/nikezono.png)
+![image](nikezono.png)
 
 <br> <br>
 
-![image](afiles/adidas.png)
+![image](adidas.png)
 
 <br> <br>
 When my partner in crime came up with this cunning idea, with all the recent results in deep learning and jazz, I assumed this to be a trivial problem in the sense that I could use Google Vision / Tensorflow models or Amazon Rekognition to convert the trademark / logo images to word vectors and then compute similar images based on some distance metric that fits the problem. Boy was I wrong. You see all these models used Imagenet data for training their networks so they work well with photographs and probably paintings but spectacularly fail when it comes to logos / trademarks / illustrations. Don't believe me ? You can see the kind of rubbish results google reverse image throws for images that are not indexed by google.
 <br> <br>
-![image]afiles/google1.png)
+![image](google1.png)
 <br> <br>
-![image](afiles/google2.png)
+![image](google2.png)
 <br> <br>
 To be fair, every now and then, it identifies an image as an illustration and gives good results.
 <br> <br>
 
-![image](afiles/google3.png)
+![image](google3.png)
 <br> <br>
 Thus began my journey into attacking this problem from the basics. I knew there had to be a solution to this because WIPO (World Intellectual Property Organization) and EUIPO (European Union Intellectual Property Organization ) have visual search engines that give pretty good results. My first thought was modelling this as a Work / Energy problem - quantifying similarity based on the amount of effort needed to stretch one image to fit another using curvillinear coordinate transformations and soon enough I found [this paper](http://slipguru.disi.unige.it/readinggroup/papers_vis/BMP-shape.pdf?lipi=urn%3Ali%3Apage%3Ad_flagship3_pulse_read%3B%2F%2FDryRVMQ2CiU5SPT0xssA%3D%3D) by Belongie and Jitendra Malik (A stalwart in computer vision who 'was' also a notable critic of the effectiveness of neural networks in computer vision) It seemed to work pretty well on smaller datasets but didn't scale well with larger datasets. I experimented for a month or so with contour based techniques and tried some cunning physics inspired schemes but once again, scaling was the issue.
 
 That is when I found this [excellent summary](http://www.ppgia.pucpr.br/~alekoe/AM/2009/private/veltkamp99stateart.pdf?lipi=urn%3Ali%3Apage%3Ad_flagship3_pulse_read%3B%2F%2FDryRVMQ2CiU5SPT0xssA%3D%3D) of all of the state-of-the-art techniques for shape matching by Professor Veltkamp that guided me for the next 4 months. After exploring every possible technique available in literature and some other, I managed to come up with a mishmash of contour, histogram, moments and hull techniques to come up with these results. There will be more updates in the next couple of weeks. Work is already underway to throw in deep learning to the mix with the right set of data.
 
 <br> <br>
-![image](afiles/telugu.png)
+![image](telugu.png)
 <br> <br>
-![image]afiles/logosan0.png)
+![image](logosan0.png)
 <br> <br>
-![image]afiles/logosan1.png)
+![image](logosan1.png)
 <br> <br>
-![image](afiles/logosan.png)
+![image](logosan.png)
 <br> <br>
-![image]afiles/logosan3.png)
+![image](logosan3.png)
